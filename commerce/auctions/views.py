@@ -68,13 +68,6 @@ def active_listing(request):
     })
 
 def Users(request):
-    if request.method == "POST":
-        Username = request.POST["Delete"]
-        u = User.objects.get(User = Username)
-        u.delete() 
-
-        return HttpResponseRedirect(reverse("index"))
-    
     return render(request, "auctions/Users.html", {
         "Users": User.objects.all()
     })

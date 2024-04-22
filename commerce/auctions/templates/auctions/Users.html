@@ -1,0 +1,20 @@
+
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+    {% for x in Users %}
+    <li>
+        <h1>{{x}}</h1>
+    </li>
+        {% endfor %}   
+    <form action="{% url 'Users' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <input class="form-control" autofocus type="text" name="Username" placeholder="Username">
+        </div>
+        <input class="btn btn-primary" type="submit" value="Delete">
+    </form>
+    
+
+{% endblock %}

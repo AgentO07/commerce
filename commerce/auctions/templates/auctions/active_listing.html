@@ -1,0 +1,21 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Active Listing</h2>
+    <ul>
+
+        {% for x_listings in Act_listings %}
+        <!-- If the listing is an active listing, only then show it -->
+        <li>
+            <h1>{{x_listings.title}}</h1>
+            <img src= '{{x_listings.photo}}' alt= '{{x_listings.title}}'>
+            <h2>Current Price : $ {{x_listings.current_price}}</h2>
+            <h2>Description:    {{x_listings.description}}</h2>
+            <!-- Add a description Tag -->
+                
+        </li>
+            {% endfor %}
+    </ul>
+
+
+{% endblock %}

@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
-
+from django.db.models import AutoField
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -27,8 +27,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Define DEFAULT_AUTO_FIELD
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 # Application definition
+
 
 INSTALLED_APPS = [
     'auctions',

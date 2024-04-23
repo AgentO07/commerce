@@ -3,7 +3,7 @@ from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from .models import User, Auction_listings
+from .models import User, Auction_listings, Bids, Auction_categories
 from django.contrib.auth.decorators import login_required
     
 
@@ -67,16 +67,22 @@ def active_listing(request):
         "Act_listings": Auction_listings.objects.all()
     })
 
+
 def Users(request):
     return render(request, "auctions/Users.html", {
         "Users": User.objects.all()
     })
 
-def listing(request):
-    return render(request, "auctions/listing.html")
+def listing(request, req_list):
+    return render(request, "auctions/listing.html", {
+        "Listing": Auction_listings.objects.get(title=str(req_list))
+
+    })
 
 def categories(request):
-    return render(request, "auctions/categories.html")
+    return render(request, "auctions/categories.html",{
+        "Categories": Auction_categories.objects.all()
+    })
 
 def watchlist(request):
     return render(request, "auctions/watchlist.html")

@@ -11,20 +11,24 @@ from django.db import models
 class User(AbstractUser):
     pass
 
+
+
+class Bids(models.Model):
+    starting_bid_price = models.IntegerField()
+    current_bid_price = models.IntegerField()
+
+class Auction_categories(models.Model):
+    category = models.CharField(max_length=64)
+
 class Auction_listings(models.Model):
     title = models.CharField(max_length=64)
     description = models.CharField(max_length=256)
     current_price = models.IntegerField()
     photo = models.URLField(max_length=256)
-
-class Bids():
-    pass
-
-class Auction_categories():
-    pass
+    category = models.CharField(max_length=64)
 
 class Comments():
     pass
 
-
-
+class Watchlist(models.Model):
+    pass

@@ -2,8 +2,12 @@
 
 {% block body %}
     <h2>Categories</h2>
+    {% for x in Categories %}
+
+    <a class="nav-link" href="http://127.0.0.1:8000/categories/{{x.category}}">{{x.category}}</a>
     <!-- LIST ALL THE CATEGORIES {HYPERLINKED} -->
     
+    {% endfor %}
 
     TODO
 {% endblock %}

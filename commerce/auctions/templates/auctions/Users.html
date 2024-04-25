@@ -1,0 +1,14 @@
+
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+    {% for x in Users %}
+    <li>
+        <h1>{{x}}</h1>
+    </li>
+        {% endfor %}   
+
+    
+
+{% endblock %}

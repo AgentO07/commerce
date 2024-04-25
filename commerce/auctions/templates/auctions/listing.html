@@ -1,0 +1,37 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+    <h1>{{Listing.title}}</h1>
+    
+    <img src= {{Listing.photo}} alt= '{{Listing.title}}'>
+    
+    <h2>${{Listing.current_price}}</h2>
+    <h2>{{Listing.description}}</h2>
+    <h2>{{Listing.categories}}</h2>
+    
+    <!--  IF THE USER IS SIGNED IN -->
+
+    {% if user.is_authenticated %}
+    
+        <h1>Watchlist</h1>
+        <h1>Bidding Option</h1>
+        <h1>Close Auction</h1>
+        
+
+        <h2>Comment PAGE</h2>
+
+    {% endif %}
+    
+        <!-- option to add item on the watchlist 
+        if the item already on watchlist, then option to remove it -->
+
+        <!-- Bidding option {only if the user is signed in} -->
+
+        <!-- close auction option -->
+
+        <!-- Auction winning Banner -->
+
+        <!-- COMMENT PAGE -->
+    TODO
+{% endblock %}

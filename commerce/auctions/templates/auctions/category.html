@@ -1,0 +1,13 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <ul>
+        {% for y in Lists %}
+            <a class="nav-link" href="http://127.0.0.1:8000/listing/{{y.title}}">{{y.title}}</a>
+    
+        {% empty %}
+         <li>No items.</li>
+        {% endfor %}
+        </ul>
+{% endblock %}
+

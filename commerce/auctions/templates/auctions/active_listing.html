@@ -1,0 +1,20 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Active Listing</h2>
+    <ul>
+
+        {% for x_listings in Act_listings %}
+        <!-- If the listing is an active listing, only then show it -->
+        <li>
+            <a class="nav-link" href="http://127.0.0.1:8000/listing/{{x_listings.title}}">{{x_listings.title}}</a>
+            <img src= '{{x_listings.photo}}' alt= '{{x_listings.title}}'>
+            <h2>Current Price : $ {{x_listings.current_price}}</h2>
+            <h2>Description:    {{x_listings.description}}</h2>
+            
+        </li>
+            {% endfor %}
+    </ul>
+
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Categories</h2>
+    {% for x in Categories %}
+
+    <a class="nav-link" href="http://127.0.0.1:8000/category/{{x.name}}">{{x.name}}</a>
+    
+    
+    {% endfor %}
+
+{% endblock %}

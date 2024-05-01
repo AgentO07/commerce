@@ -1,0 +1,70 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+    {{ block.super }}
+    <style>
+        /* Hardcoded CSS styles */
+        .watchlist-forms {
+            text-align: right; 
+            margin-top: 20px; 
+        }
+
+        /* Add more CSS styles here as needed */
+    </style>
+
+    <h1>{{Listing.title}}</h1>
+    <div class="watchlist-forms">
+        {% if is_in_watchlist %}
+            <form action="http://127.0.0.1:8000/listing/{{Listing.title}}" method="post" name="Remove">
+                {% csrf_token %}
+                <input class='btn btn-primary' type="submit" value="Remove From Watchlist">
+            </form>
+        {% else %}
+            <form action="http://127.0.0.1:8000/listing/{{Listing.title}}" method="post" name="Add">
+                {% csrf_token %}
+                <input class='btn btn-primary' type="submit" value="Add to Watchlist">
+            </form>
+        {% endif %}
+    </div>
+    
+    
+    <img src= {{Listing.photo}} alt= '{{Listing.title}}'>
+    
+
+    <h2>${{Listing.current_price}}</h2>
+    <h2>{{Listing.description}}</h2>
+    <h2>Category: {{Listing.category.name}}</h2>
+
+    <!--  IF THE USER IS SIGNED IN -->
+
+    {% if user.is_authenticated %}
+
+    
+
+        <h1>Bidding Option</h1>
+        <h1>Close Auction</h1>
+        
+
+    
+        <h1>COMMENTS</h1>
+        {% for x in Comments %}
+        <h3>{{x.comment}}</h3>
+        <!-- option to add item on the watchlist 
+        if the item already on watchlist, then option to remove it -->
+
+        <!-- Bidding option {only if the user is signed in} -->
+
+        <!-- close auction option -->
+
+        <!-- Auction winning Banner -->
+
+        <!-- COMMENT PAGE -->
+    {% endfor %}
+
+    {% endif %}
+    
+
+    
+    TODO
+{% endblock %}

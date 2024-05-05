@@ -1,0 +1,11 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>WatchList</h2>
+    {% for x in watch_list %}
+    
+        <a class="nav-link" href="http://127.0.0.1:8000/listing/{{x.title}}">{{x.title}}</a>
+        
+    {% endfor %}
+    
+{% endblock %}

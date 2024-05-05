@@ -1,0 +1,93 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+    {{ block.super }}
+    <style>
+        /* Hardcoded CSS styles */
+        .watchlist-forms {
+            text-align: right; 
+            margin-top: 20px; 
+        }
+
+        /* Add more CSS styles here as needed */
+    </style>
+
+    <h1>{{Listing.title}}</h1>
+
+    {% if user.is_authenticated %}
+        <div class="watchlist-forms">
+            {% if is_in_watchlist %}
+                <form action="http://127.0.0.1:8000/listing/{{Listing.title}}" method="post" name="Remove">
+                    {% csrf_token %}
+                    <input class='btn btn-primary' type="submit" value="Remove From Watchlist">
+                </form>
+            {% else %}
+                <form action="http://127.0.0.1:8000/listing/{{Listing.title}}" method="post" name="Add">
+                    {% csrf_token %}
+                    <input class='btn btn-primary' type="submit" value="Add to Watchlist">
+                </form>
+            {% endif %}
+            
+            <br>
+
+            
+
+        {% if user_initiated_bid %}
+
+            
+            <form action="http://127.0.0.1:8000/closed_auctions/{{Listing.title}}" method="post" name="Close_Auction">
+                {% csrf_token %}
+                <input class='btn btn-primary' type="submit" value="Close Auction">
+            </form>
+        {% endif %}
+    
+
+        </div>
+    
+        {% endif %}
+    
+    <img src= {{Listing.photo}} alt= '{{Listing.title}}'>
+    
+
+    <h2>Current Highest Bid: ${{Listing.current_price}}</h2>
+
+
+    {% if user.is_authenticated %}
+        {% if not user_initiated_bid %}
+            <form action="http://127.0.0.1:8000/bid/{{Listing.title}}" method="post" name="Place_A_Bid">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input class="form-control" autofocus type="text" name="Bid" placeholder="Place Your Bid Here">
+                </div>
+            </form>
+        {% endif %}
+    {% endif %}
+        <h2>{{Listing.description}}</h2>
+    <h2>Category: {{Listing.category.name}}</h2>
+
+    <!--  IF THE USER IS SIGNED IN -->
+    <hr>
+
+
+    <hr>
+    
+        <h1>COMMENTS</h1>
+        {% if user.is_authenticated %}
+            <form action="http://127.0.0.1:8000/comment/{{Listing.title}}" method="post" name="Add_A_Comment">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input class="form-control" autofocus type="text" name="Add_Comment" placeholder="Type Your Comment Here">
+                </div>
+            </form>
+        {% endif %}
+
+        {% for x in Comments %}
+        {{x.comment}}<br>
+
+        {% endfor %}
+
+    
+    
+
+{% endblock %}

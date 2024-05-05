@@ -1,0 +1,16 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+        
+<h2>Closed Listing</h2>
+
+<h2>The Auction for Item: {{ Listing.title }} has ended.</h2>
+<h2>User with the Highest Bid has won!!</h2>
+
+<img src= '{{Listing.photo}}' alt= '{{Listing.title}}'>
+
+
+
+
+
+{% endblock %}

@@ -14,7 +14,7 @@ class User(AbstractUser):
 
 
 class Bids(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, related_name="Not_surer")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
     current_bid_price = models.IntegerField()
 
 class Auction_categories(models.Model):
@@ -40,7 +40,7 @@ class User_Watchlist(models.Model):
 
 
 class Bidding_Book(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null = True ,blank=True, related_name="user_bidding_book")
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null = True ,blank=True, related_name="bidding_book")
     listing = models.ManyToManyField(Auction_listings)
 
 

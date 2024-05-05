@@ -121,6 +121,10 @@ def listing(request, req_list):
 
 def closed_listing(request, list):
     close_list = Auction_listings.objects.get(title=str(list))
+    
+    Winner_price = close_list.current_price
+
+    bid_user = Bids.objects.get(current_bid_price=Winner_price)
     Closed_Auctions.objects.create(
         title = close_list.title,
         description = close_list.description,
@@ -130,16 +134,18 @@ def closed_listing(request, list):
     
     close_list.delete()
     return render(request, "auctions/closed_auctions.html",{
-        "Listing": X_list
+        "Listing": X_list,
+        "Price": bid_user
     })
 
 def bid(request, list):
     if request.method == "POST":
+        current_user = request.user
         bid_x = int(request.POST.get("Bid"))
         listing = Auction_listings.objects.get(title=str(list))
         highest_bid = listing.current_price
         if int(bid_x) > int(highest_bid):
-            bid_ = Bids.objects.create(current_bid_price=bid_x)
+            bid_ = Bids.objects.create(current_bid_price=bid_x, user=current_user)
             listing.bid.add(bid_)
             listing.current_price = bid_x
             listing.save()
